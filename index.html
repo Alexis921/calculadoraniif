@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff; /* Celeste corporativo */
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .calculator-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            color: #008080; /* Celeste corporativo */
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #008080; /* Celeste corporativo */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #006666; /* Cambio de tono en hover */
+        }
+
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #008080; /* Celeste corporativo */
+        }
+    </style>
+    <title>Calculadora de Valor Presente</title>
+</head>
+<body>
+    <div class="calculator-container">
+        <h1>Calculadora de Valor Presente</h1>
+        <div class="input-group">
+            <label for="valorFuturo">Valor Futuro:</label>
+            <input type="number" id="valorFuturo" placeholder="Ingrese el valor futuro">
+        </div>
+        <div class="input-group">
+            <label for="tasaDescuento">Tasa de Descuento (%):</label>
+            <input type="number" id="tasaDescuento" placeholder="Ingrese la tasa de descuento">
+        </div>
+        <div class="input-group">
+            <label for="periodos">Número de Períodos:</label>
+            <input type="number" id="periodos" placeholder="Ingrese el número de períodos">
+        </div>
+        <button onclick="calcularValorPresente()">Calcular</button>
+        <div id="resultado"></div>
+    </div>
+    <script>
+        function calcularValorPresente() {
+            var valorFuturo = parseFloat(document.getElementById('valorFuturo').value);
+            var tasaDescuento = parseFloat(document.getElementById('tasaDescuento').value);
+            var periodos = parseFloat(document.getElementById('periodos').value);
+
+            if (isNaN(valorFuturo) || isNaN(tasaDescuento) || isNaN(periodos)) {
+                alert('Por favor, ingrese valores numéricos válidos.');
+                return;
+            }
+
+            var tasaDecimal = tasaDescuento / 100;
+            var valorPresente = valorFuturo / Math.pow((1 + tasaDecimal), periodos);
+
+            document.getElementById('resultado').innerText = 'El valor presente es: ' + valorPresente.toFixed(2);
+        }
+    </script>
+</body>
+</html>
